@@ -1,0 +1,13 @@
+---
+# tasks file for update_reboot
+
+
+  - name: Update the system
+    yum:
+      name: '*'
+      state: installed
+
+  - name: reboot the system
+    reboot:
+      msg: "Reboot system after update"
+    when: yum.changed
