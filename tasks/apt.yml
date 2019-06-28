@@ -1,0 +1,11 @@
+---
+
+  - name: Update the system
+    apt:
+      name: '*'
+      state: installed
+
+  - name: reboot the system
+    reboot:
+      msg: "Reboot system after update"
+    when: apt.changed

@@ -1,13 +1,15 @@
 ---
 # tasks file for update_reboot
 
+  - name: Update RHEL
+    include_tasks: yum.yml
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
-  - name: Update the system
-    yum:
-      name: '*'
-      state: installed
+  - name: "Update Raspberry/Ubuntu/Debian"
+    include_tasks: apt.yml
+    when: (ansible_facts['distribution'] == "Debian" #and #ansible_facts['distribution_major_version'] == "7")
 
-  - name: reboot the system
-    reboot:
-      msg: "Reboot system after update"
-    when: yum.changed
+  - name: "Update Fedora/RHEL 8/ Centos 8"
+    include_tasks: dnf.yml
+    when: (ansible_facts['distribution'] == "Fedora" or
+          (ansible_facts['distribution'] == "Red Hat" and ansible_facts['distribution_major_version'] == "8")

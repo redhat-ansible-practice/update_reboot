@@ -1,0 +1,11 @@
+---  
+  
+  - name: Update the system
+    dnf:
+      name: '*'
+      state: installed
+
+  - name: reboot the system
+    reboot:
+      msg: "Reboot system after update"
+    when: dnf.changed
