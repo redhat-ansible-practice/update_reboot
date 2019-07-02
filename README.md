@@ -1,7 +1,7 @@
 Update & Reboot
 =========
 
-This role updates all the rpms in a system and reboots using the new ansible reboot action plugin. This role can be used in combination with numerous roles.
+This role updates all the packages in a system and reboots using the new ansible reboot action plugin. This role can be used in combination with numerous roles. This role uses ansible variables to indentify the OS family and use the correct package system. For example yum or apt.
 
 Requirements
 ------------
@@ -35,4 +35,4 @@ GPLv3
 
 Author Information
 ------------------
-
+jlozadad@redhat.com
