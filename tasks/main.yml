@@ -3,13 +3,13 @@
 
   - name: Update RHEL
     include_tasks: yum.yml
-    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
-
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7") or
+          (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   - name: "Update Raspberry/Ubuntu/Debian"
     include_tasks: apt.yml
-    when: (ansible_facts['distribution'] == "Debian" #and #ansible_facts['distribution_major_version'] == "7")
+    when: ansible_facts['distribution'] == "Debian" #and #ansible_facts['distribution_major_version'] == "7")
 
   - name: "Update Fedora/RHEL 8/ Centos 8"
     include_tasks: dnf.yml
-    when: (ansible_facts['distribution'] == "Fedora" or
+    when: (ansible_facts['distribution'] == "Fedora") or
           (ansible_facts['distribution'] == "Red Hat" and ansible_facts['distribution_major_version'] == "8")
